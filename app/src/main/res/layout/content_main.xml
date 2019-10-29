@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".MainActivity"
+    tools:showIn="@layout/activity_main">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <Button
+            android:id="@+id/main_btn_khoanthu"
+            android:text="Khoản thu"
+            android:textSize="20dp"
+            android:padding="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:id="@+id/main_btn_khoanchi"
+            android:text="Khoản chi"
+            android:textSize="20dp"
+            android:padding="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/main_btn_khoanthu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:id="@+id/main_btn_thongke"
+            android:text="Thống kê"
+            android:textSize="20dp"
+            android:padding="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/main_btn_khoanchi"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:id="@+id/main_btn_thoat"
+            android:text="Thoát"
+            android:textSize="20dp"
+            android:padding="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_below="@+id/main_btn_thongke"
+            android:layout_alignParentStart="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+
+</android.support.v4.widget.NestedScrollView>

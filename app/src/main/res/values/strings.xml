@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Chi tiêu cá nhân</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_khoan_thu">KhoanThuActivity</string>
+
+    <string name="title_activity_add_khoan_thu">AddKhoanThuActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+</resources>
