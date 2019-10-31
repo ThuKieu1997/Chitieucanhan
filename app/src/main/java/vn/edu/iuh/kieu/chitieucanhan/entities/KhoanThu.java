@@ -12,9 +12,16 @@ public class KhoanThu implements Serializable {
 
     private double sotien;
 
-    private LocalDateTime time;
+    private String time;
 
-    public KhoanThu(String title, double sotien, LocalDateTime time) {
+    public KhoanThu(long id, String title, double sotien, String time) {
+        this.id = id;
+        this.title = title;
+        this.sotien = sotien;
+        this.time = time;
+    }
+
+    public KhoanThu(String title, double sotien, String time) {
         this.id = 0;
         this.title = title;
         this.sotien = sotien;
@@ -25,7 +32,7 @@ public class KhoanThu implements Serializable {
         this.id = id;
         this.title = "";
         this.sotien = 0;
-        this.time = LocalDateTime.now();
+        this.time = "";
     }
 
     @Override
@@ -62,11 +69,11 @@ public class KhoanThu implements Serializable {
         this.sotien = sotien;
     }
 
-    public LocalDateTime getTime() {
+    public String getTime() {
         return time;
     }
 
-    public void setTime(LocalDateTime time) {
+    public void setTime(String time) {
         this.time = time;
     }
 }

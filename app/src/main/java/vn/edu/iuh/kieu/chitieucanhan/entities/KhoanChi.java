@@ -3,6 +3,7 @@ package vn.edu.iuh.kieu.chitieucanhan.entities;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.Objects;
+import java.util.TimeZone;
 
 public class KhoanChi implements Serializable {
 
@@ -12,9 +13,9 @@ public class KhoanChi implements Serializable {
 
     private double sotien;
 
-    private LocalDateTime time;
+    private String time;
 
-    public KhoanChi(String title, double sotien, LocalDateTime time) {
+    public KhoanChi(String title, double sotien, String time) {
         this.id = 0;
         this.title = title;
         this.sotien = sotien;
@@ -25,7 +26,7 @@ public class KhoanChi implements Serializable {
         this.id = id;
         this.title = "";
         this.sotien = 0;
-        this.time = LocalDateTime.now();
+        this.time = "";
     }
 
     @Override
@@ -62,11 +63,11 @@ public class KhoanChi implements Serializable {
         this.sotien = sotien;
     }
 
-    public LocalDateTime getTime() {
+    public String getTime() {
         return time;
     }
 
-    public void setTime(LocalDateTime time) {
+    public void setTime(String time) {
         this.time = time;
     }
 }

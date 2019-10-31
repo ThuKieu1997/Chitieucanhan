@@ -15,6 +15,9 @@ import android.widget.ImageButton;
 import java.util.Calendar;
 import java.util.TimeZone;
 
+import vn.edu.iuh.kieu.chitieucanhan.dao.KhoanThuDAO;
+import vn.edu.iuh.kieu.chitieucanhan.entities.KhoanThu;
+
 public class AddKhoanThuActivity extends AppCompatActivity implements View.OnClickListener, DatePickerDialog.OnDateSetListener {
 
     private EditText edtNoiDung;
@@ -27,12 +30,16 @@ public class AddKhoanThuActivity extends AppCompatActivity implements View.OnCli
 
     private Button btnAdd;
 
+    private KhoanThuDAO khoanThuDAO;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_khoan_thu);
         addContents();
         addEvents();
+
+        khoanThuDAO = new KhoanThuDAO(this);
     }
 
     private void addContents() {
@@ -62,7 +69,11 @@ public class AddKhoanThuActivity extends AppCompatActivity implements View.OnCli
 
             datePickerDialog.show();
         } else if (v.equals(btnAdd)) {
-
+            KhoanThu khoanThu = new KhoanThu(
+                    edtNoiDung.getText().toString(),
+                    Double.parseDouble(edtSoTien.getText().toString()),
+                    edtThoigian.getText().toString());
+            khoanThuDAO.insert(khoanThu, MoneySqliteOpenHelper.TABLE_KHOANTHU);
         }
     }
 
