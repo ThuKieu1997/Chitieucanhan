@@ -2,8 +2,6 @@ package vn.edu.iuh.kieu.chitieucanhan.controller.khoanthu;
 
 import android.content.Context;
 
-import java.util.Locale;
-
 import vn.edu.iuh.kieu.chitieucanhan.BaseContext;
 import vn.edu.iuh.kieu.chitieucanhan.controller.BaseController;
 import vn.edu.iuh.kieu.chitieucanhan.dao.KhoanThuDAO;
@@ -43,11 +41,11 @@ public class ThemKhoanThuImpl extends BaseController implements ThemKhoanThu {
     @Override
     public void validate() throws Exception {
 
-        if (!isValidDate("dd/MM/yyyy", this.ngay, Locale.ENGLISH)) {
+        if (!isValidDate("dd/MM/yyyy", this.ngay)) {
             throw new Exception("Ngày đã nhập không hợp lệ !");
         }
 
-        if (!isNumeric(this.sotien)) {
+        if (!isValidNumeric(this.sotien)) {
             throw new Exception("Số tiền không hợp lệ !");
         }
 

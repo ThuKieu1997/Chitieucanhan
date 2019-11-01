@@ -9,9 +9,9 @@ import java.util.Locale;
 
 public abstract class BaseController {
 
-    public boolean isValidDate(String format, String value, Locale locale) {
+    public boolean isValidDate(String format, String value) {
         LocalDateTime ldt = null;
-        DateTimeFormatter fomatter = DateTimeFormatter.ofPattern(format, locale);
+        DateTimeFormatter fomatter = DateTimeFormatter.ofPattern(format, Locale.ENGLISH);
 
         try {
             ldt = LocalDateTime.parse(value, fomatter);
@@ -37,7 +37,7 @@ public abstract class BaseController {
         return false;
     }
 
-    public boolean isNumeric(String str) {
+    public boolean isValidNumeric(String str) {
         try {
             Double.parseDouble(str);
             return true;

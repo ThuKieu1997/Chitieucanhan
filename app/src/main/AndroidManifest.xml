@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".MainActivity"
+            android:name=".views.MainActivity"
             android:label="@string/title_activity_main"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -20,11 +20,11 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".KhoanThuActivity"
+            android:name=".views.khoanthu.KhoanThuActivity"
             android:label="@string/title_activity_khoan_thu"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".AddKhoanThuActivity"
+            android:name=".views.khoanthu.AddKhoanThuActivity"
             android:label="@string/title_activity_add_khoan_thu"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>

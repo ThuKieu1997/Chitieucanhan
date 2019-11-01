@@ -1,6 +1,7 @@
-package vn.edu.iuh.kieu.chitieucanhan;
+package vn.edu.iuh.kieu.chitieucanhan.views.khoanthu;
 
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -16,6 +17,7 @@ import android.widget.Toast;
 import java.util.Calendar;
 import java.util.TimeZone;
 
+import vn.edu.iuh.kieu.chitieucanhan.R;
 import vn.edu.iuh.kieu.chitieucanhan.controller.khoanthu.ThemKhoanThu;
 import vn.edu.iuh.kieu.chitieucanhan.controller.khoanthu.ThemKhoanThuImpl;
 import vn.edu.iuh.kieu.chitieucanhan.dao.KhoanThuDAO;
@@ -90,6 +92,11 @@ public class AddKhoanThuActivity extends AppCompatActivity implements View.OnCli
             boolean result = this.themKhoanThu.result();
             if (result) {
                 Toast.makeText(this, "Thêm khoản thu thành công !", Toast.LENGTH_SHORT).show();
+
+                Intent intent = getIntent();
+                intent.putExtra("RESULT_ADD", true);
+
+                setResult(RESULT_OK, intent);
                 finish();
             }
         }

@@ -18,7 +18,7 @@ public class KhoanThuDAO extends BaseDAO<KhoanThu> {
     }
 
     @Override
-    List<KhoanThu> getAll() {
+    public List<KhoanThu> getAll() {
         db = openHelper.getReadableDatabase();
         List<KhoanThu> khoanThuList = new ArrayList<>();
         Cursor cursor = db.query(TABLE_KHOANTHU,
@@ -31,6 +31,7 @@ public class KhoanThuDAO extends BaseDAO<KhoanThu> {
                 String time = cursor.getString(cursor.getColumnIndex("time"));
                 KhoanThu khoanThu = new KhoanThu(id, title, sotien, time);
                 khoanThuList.add(khoanThu);
+                cursor.moveToNext();
             }
         }
 
@@ -41,7 +42,7 @@ public class KhoanThuDAO extends BaseDAO<KhoanThu> {
     }
 
     @Override
-    KhoanThu getOne(int id) {
+    public KhoanThu getOne(int id) {
         db = openHelper.getReadableDatabase();
         Cursor cursor = db.query(TABLE_KHOANTHU,
                 null, "id = ?", new String[]{String.valueOf(id)},
@@ -54,6 +55,7 @@ public class KhoanThuDAO extends BaseDAO<KhoanThu> {
                 double sotien = cursor.getDouble(cursor.getColumnIndex("sotien"));
                 String time = cursor.getString(cursor.getColumnIndex("time"));
                 khoanThu = new KhoanThu(id, title, sotien, time);
+                cursor.moveToNext();
             }
         }
 

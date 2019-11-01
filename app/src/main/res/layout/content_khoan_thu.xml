@@ -6,15 +6,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".KhoanThuActivity"
+    tools:context=".views.khoanthu.KhoanThuActivity"
     tools:showIn="@layout/activity_khoan_thu">
 
-    <RelativeLayout
+    <ListView
+        android:id="@+id/khoanthu_lvKhoanthu"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-
-
-    </RelativeLayout>
+        android:layout_height="match_parent" />
 
 </android.support.v4.widget.NestedScrollView>

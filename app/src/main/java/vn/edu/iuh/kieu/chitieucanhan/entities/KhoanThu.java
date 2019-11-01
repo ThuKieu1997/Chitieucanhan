@@ -76,4 +76,14 @@ public class KhoanThu implements Serializable {
     public void setTime(String time) {
         this.time = time;
     }
+
+    @Override
+    public String toString() {
+        return "KhoanThu{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", sotien=" + sotien +
+                ", time='" + time + '\'' +
+                '}';
+    }
 }

@@ -10,9 +10,5 @@ public interface ThemKhoanThu extends Validator {
 
     void setNgay(String ngay);
 
-    void validate() throws Exception;
-
-    void execute() throws Exception;
-
     boolean result();
 }
