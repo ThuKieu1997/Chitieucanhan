@@ -4,14 +4,14 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import static vn.edu.iuh.kieu.chitieucanhan.BaseContext.TABLE_KHOANCHI;
+import static vn.edu.iuh.kieu.chitieucanhan.BaseContext.TABLE_KHOANTHU;
+import static vn.edu.iuh.kieu.chitieucanhan.BaseContext.TABLE_MONEY;
+
 public class MoneySqliteOpenHelper extends SQLiteOpenHelper {
 
     private static final int DB_VERSION = 1;
     public static final String DB_NAME = "money.db";
-
-    public static final String TABLE_KHOANTHU = "KHOANTHU";
-    public static final String TABLE_KHOANCHI = "KHOANCHI";
-    public static final String TABLE_MONEY = "MONEY";
 
     public MoneySqliteOpenHelper(Context context) {
         super(context, DB_NAME, null, DB_VERSION);
@@ -24,10 +24,10 @@ public class MoneySqliteOpenHelper extends SQLiteOpenHelper {
         db.execSQL("CREATE TABLE " + TABLE_MONEY + " (id INTEGER PRIMARY KEY AUTOINCREMENT, tongtien double);");
 
         // KHOAN THU
-        db.execSQL("CREATE TABLE " + TABLE_KHOANTHU + "(id INTEGER PRIMARY KEY AUTOINCREMENT, title VARCHAR(255), sotien DOUBLE, time datetime, moneyid INTEGER NOT NULL CONSTRAINT pk_money_khoanthu REFERENCES " + TABLE_MONEY +"(id));");
+        db.execSQL("CREATE TABLE " + TABLE_KHOANTHU + "(id INTEGER PRIMARY KEY AUTOINCREMENT, title VARCHAR(255), sotien DOUBLE, time datetime);");
 
         // KHOAN CHI
-        db.execSQL("CREATE TABLE " + TABLE_KHOANCHI + " (id INTEGER PRIMARY KEY AUTOINCREMENT, title VARCHAR(255), sotien DOUBLE, time datetime, moneyid INTEGER NOT NULL CONSTRAINT pk_money_khoanthu REFERENCES " + TABLE_MONEY + "(id));");
+        db.execSQL("CREATE TABLE " + TABLE_KHOANCHI + " (id INTEGER PRIMARY KEY AUTOINCREMENT, title VARCHAR(255), sotien DOUBLE, time datetime);");
     }
 
     @Override

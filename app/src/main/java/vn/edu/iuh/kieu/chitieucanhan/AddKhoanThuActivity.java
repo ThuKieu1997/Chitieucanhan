@@ -11,12 +11,17 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import java.util.Calendar;
 import java.util.TimeZone;
 
+import vn.edu.iuh.kieu.chitieucanhan.controller.khoanthu.ThemKhoanThu;
+import vn.edu.iuh.kieu.chitieucanhan.controller.khoanthu.ThemKhoanThuImpl;
 import vn.edu.iuh.kieu.chitieucanhan.dao.KhoanThuDAO;
 import vn.edu.iuh.kieu.chitieucanhan.entities.KhoanThu;
+
+import static vn.edu.iuh.kieu.chitieucanhan.BaseContext.TABLE_KHOANTHU;
 
 public class AddKhoanThuActivity extends AppCompatActivity implements View.OnClickListener, DatePickerDialog.OnDateSetListener {
 
@@ -30,7 +35,7 @@ public class AddKhoanThuActivity extends AppCompatActivity implements View.OnCli
 
     private Button btnAdd;
 
-    private KhoanThuDAO khoanThuDAO;
+    private ThemKhoanThu themKhoanThu;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +44,7 @@ public class AddKhoanThuActivity extends AppCompatActivity implements View.OnCli
         addContents();
         addEvents();
 
-        khoanThuDAO = new KhoanThuDAO(this);
+        this.themKhoanThu = new ThemKhoanThuImpl(this);
     }
 
     private void addContents() {
@@ -69,18 +74,48 @@ public class AddKhoanThuActivity extends AppCompatActivity implements View.OnCli
 
             datePickerDialog.show();
         } else if (v.equals(btnAdd)) {
-            KhoanThu khoanThu = new KhoanThu(
-                    edtNoiDung.getText().toString(),
-                    Double.parseDouble(edtSoTien.getText().toString()),
-                    edtThoigian.getText().toString());
-            khoanThuDAO.insert(khoanThu, MoneySqliteOpenHelper.TABLE_KHOANTHU);
+            this.themKhoanThu.setContent(edtNoiDung.getText().toString());
+            this.themKhoanThu.setNgay(edtThoigian.getText().toString());
+            this.themKhoanThu.setSotien(edtSoTien.getText().toString());
+            try {
+                // execute insert
+                this.themKhoanThu.execute();
+            } catch (Exception e) {
+                e.printStackTrace();
+                // neu xay ra loi validate
+                Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+
+            // get result insert
+            boolean result = this.themKhoanThu.result();
+            if (result) {
+                Toast.makeText(this, "Thêm khoản thu thành công !", Toast.LENGTH_SHORT).show();
+                finish();
+            }
         }
     }
 
     @Override
     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+        // xu ly them 0 truoc ngay
+        String days = "";
+        if (dayOfMonth < 10) {
+            days += "0" + dayOfMonth;
+        } else {
+            days = String.valueOf(dayOfMonth);
+        }
+
+        // xu ly them 0 truoc thang
+        String months = "";
+        if ((month + 1) < 10) {
+            months += "0" + (month + 1);
+        } else {
+            months = String.valueOf(month);
+        }
+
+        // format date is dd/MM/yyyy
         edtThoigian.setText(new StringBuilder()
                 // Month is 0 based so add 1
-                .append(dayOfMonth).append("/").append(month + 1).append("/").append(year));
+                .append(days).append("/").append(months).append("/").append(year));
     }
 }
