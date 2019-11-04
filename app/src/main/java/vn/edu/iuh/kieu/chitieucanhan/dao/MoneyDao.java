@@ -24,7 +24,7 @@ public class MoneyDao extends BaseDAO<Money> {
         Cursor cursor = db.query(TABLE_MONEY,
                 null, null, null, null, null, null);
         if (cursor.moveToFirst()) {
-            while (cursor.isAfterLast()) {
+            while (!cursor.isAfterLast()) {
                 Money money = new Money(
                         cursor.getLong(cursor.getColumnIndex("id")),
                         cursor.getDouble(cursor.getColumnIndex("tongtien")));
@@ -32,6 +32,10 @@ public class MoneyDao extends BaseDAO<Money> {
                 cursor.moveToNext();
             }
         }
+
+        cursor.close();
+        db.close();
+
         return moneyList;
     }
 
@@ -42,13 +46,15 @@ public class MoneyDao extends BaseDAO<Money> {
         Cursor cursor = db.query(TABLE_MONEY,
                 null, null, null, null, null, null);
         if (cursor.moveToFirst()) {
-            while (cursor.isAfterLast()) {
+            while (!cursor.isAfterLast()) {
                 money = new Money(
                         cursor.getLong(cursor.getColumnIndex("id")),
                         cursor.getDouble(cursor.getColumnIndex("tongtien")));
                 cursor.moveToNext();
             }
         }
+        cursor.close();
+        db.close();
         return money;
     }
 

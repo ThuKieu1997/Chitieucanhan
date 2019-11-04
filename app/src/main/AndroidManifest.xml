@@ -30,7 +30,10 @@
         <activity
             android:name=".views.khoanchi.KhoanChiActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".views.khoanchi.AddKhoanChiActivity" />
+        <activity android:name=".views.khoanchi.AddKhoanChiActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".views.thongke.ThongKeActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>

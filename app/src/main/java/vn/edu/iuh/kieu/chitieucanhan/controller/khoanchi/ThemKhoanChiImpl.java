@@ -1,12 +1,12 @@
 package vn.edu.iuh.kieu.chitieucanhan.controller.khoanchi;
 
 import android.content.Context;
+import android.util.Log;
 
 import java.util.List;
 
 import vn.edu.iuh.kieu.chitieucanhan.BaseContext;
 import vn.edu.iuh.kieu.chitieucanhan.controller.BaseController;
-import vn.edu.iuh.kieu.chitieucanhan.controller.khoanthu.ThemKhoanThuImpl;
 import vn.edu.iuh.kieu.chitieucanhan.dao.KhoanChiDao;
 import vn.edu.iuh.kieu.chitieucanhan.dao.KhoanThuDAO;
 import vn.edu.iuh.kieu.chitieucanhan.dao.MoneyDao;
@@ -85,6 +85,7 @@ public class ThemKhoanChiImpl extends BaseController implements ThemKhoanChi {
 
         // update tong tien
         List<Money> moneyList = moneyDao.getAll();
+        Log.i("HTC", "execute: " + moneyList);
         if (moneyList.size() > 0) {
             Money money = moneyDao.getAll().get(0);
             money.updateTongTien(khoanThuList, khoanChiList);

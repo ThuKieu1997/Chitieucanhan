@@ -1,6 +1,5 @@
 package vn.edu.iuh.kieu.chitieucanhan.views;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
@@ -11,6 +10,7 @@ import android.widget.Button;
 import vn.edu.iuh.kieu.chitieucanhan.R;
 import vn.edu.iuh.kieu.chitieucanhan.views.khoanchi.KhoanChiActivity;
 import vn.edu.iuh.kieu.chitieucanhan.views.khoanthu.KhoanThuActivity;
+import vn.edu.iuh.kieu.chitieucanhan.views.thongke.ThongKeActivity;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -54,7 +54,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             Intent intent = new Intent(this, KhoanThuActivity.class);
             startActivity(intent);
         } else if (v.equals(btnThongKe)) {
-
+            Intent intent = new Intent(this, ThongKeActivity.class);
+            startActivity(intent);
         } else if (v.equals(btnThoat)) {
             confirmExit();
         }

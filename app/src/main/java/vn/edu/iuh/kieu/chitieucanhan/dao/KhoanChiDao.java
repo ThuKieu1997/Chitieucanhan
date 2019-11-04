@@ -8,10 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import vn.edu.iuh.kieu.chitieucanhan.entities.KhoanChi;
-import vn.edu.iuh.kieu.chitieucanhan.entities.KhoanThu;
 
 import static vn.edu.iuh.kieu.chitieucanhan.BaseContext.TABLE_KHOANCHI;
-import static vn.edu.iuh.kieu.chitieucanhan.BaseContext.TABLE_KHOANTHU;
 
 public class KhoanChiDao extends BaseDAO<KhoanChi> {
 
