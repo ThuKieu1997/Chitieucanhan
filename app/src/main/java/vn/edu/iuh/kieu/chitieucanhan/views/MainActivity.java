@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 
 import vn.edu.iuh.kieu.chitieucanhan.R;
+import vn.edu.iuh.kieu.chitieucanhan.views.khoanchi.KhoanChiActivity;
 import vn.edu.iuh.kieu.chitieucanhan.views.khoanthu.KhoanThuActivity;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
@@ -47,7 +48,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View v) {
         if (v.equals(btnKhoanChi)) {
-
+            Intent intent = new Intent(this, KhoanChiActivity.class);
+            startActivity(intent);
         } else if (v.equals(btnKhoanThu)) {
             Intent intent = new Intent(this, KhoanThuActivity.class);
             startActivity(intent);

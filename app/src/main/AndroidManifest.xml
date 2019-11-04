@@ -27,6 +27,10 @@
             android:name=".views.khoanthu.AddKhoanThuActivity"
             android:label="@string/title_activity_add_khoan_thu"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".views.khoanchi.KhoanChiActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".views.khoanchi.AddKhoanChiActivity" />
     </application>
 
 </manifest>
