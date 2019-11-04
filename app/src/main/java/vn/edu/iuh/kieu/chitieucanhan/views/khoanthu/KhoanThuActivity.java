@@ -4,11 +4,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.view.ViewCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -28,7 +30,7 @@ public class KhoanThuActivity extends AppCompatActivity implements View.OnClickL
 
     private FloatingActionButton btnAdd;
 
-    private ListView lvKhoanThu;
+    private RecyclerView recyclerViewKhoanThu;
 
     private List<KhoanThu> khoanThuList;
 
@@ -53,7 +55,8 @@ public class KhoanThuActivity extends AppCompatActivity implements View.OnClickL
             this.findAllKhoanThu.execute();
 
             // init list khoan thu
-            this.khoanThuList = this.findAllKhoanThu.getKhoanThuList();
+            this.khoanThuList.clear();
+            this.khoanThuList.addAll(this.findAllKhoanThu.getKhoanThuList());
 
             Log.i("HTC", "getKhoanThuList: " + this.khoanThuList);
 
@@ -77,10 +80,13 @@ public class KhoanThuActivity extends AppCompatActivity implements View.OnClickL
     private void addControls() {
         tvKhoanthu = findViewById(R.id.khoanthu_tv_khoanthu);
         btnAdd = findViewById(R.id.fab);
-        this.lvKhoanThu = findViewById(R.id.khoanthu_lvKhoanthu);
+        this.recyclerViewKhoanThu = findViewById(R.id.khoanthu_lvKhoanthu);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        this.recyclerViewKhoanThu.setLayoutManager(layoutManager);
         this.khoanThuList = new ArrayList<>();
-        this.adapter = new KhoanThuAdapter(this, R.layout.item_khoan_thu, khoanThuList);
-        this.lvKhoanThu.setAdapter(adapter);
+        this.adapter = new KhoanThuAdapter(this, khoanThuList);
+        this.recyclerViewKhoanThu.setAdapter(adapter);
     }
 
     private void addEvents() {

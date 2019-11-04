@@ -6,35 +6,14 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.Locale;
+import java.util.regex.Pattern;
 
 public abstract class BaseController {
 
-    public boolean isValidDate(String format, String value) {
-        LocalDateTime ldt = null;
-        DateTimeFormatter fomatter = DateTimeFormatter.ofPattern(format, Locale.ENGLISH);
+    private static final String dateRegEx="^[0-3]{1}[0-9]{1}/[0-1]{1}[0-2]{1}/[1-9]{1}[0-9]{3}$";
 
-        try {
-            ldt = LocalDateTime.parse(value, fomatter);
-            String result = ldt.format(fomatter);
-            return result.equals(value);
-        } catch (DateTimeParseException e) {
-            try {
-                LocalDate ld = LocalDate.parse(value, fomatter);
-                String result = ld.format(fomatter);
-                return result.equals(value);
-            } catch (DateTimeParseException exp) {
-                try {
-                    LocalTime lt = LocalTime.parse(value, fomatter);
-                    String result = lt.format(fomatter);
-                    return result.equals(value);
-                } catch (DateTimeParseException e2) {
-                    // Debugging purposes
-                    //e2.printStackTrace();
-                }
-            }
-        }
-
-        return false;
+    public boolean isValidDate(String value) {
+        return Pattern.matches(dateRegEx, value);
     }
 
     public boolean isValidNumeric(String str) {

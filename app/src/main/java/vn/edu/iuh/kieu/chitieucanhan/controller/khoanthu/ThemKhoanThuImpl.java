@@ -41,7 +41,7 @@ public class ThemKhoanThuImpl extends BaseController implements ThemKhoanThu {
     @Override
     public void validate() throws Exception {
 
-        if (!isValidDate("dd/MM/yyyy", this.ngay)) {
+        if (!isValidDate(this.ngay)) {
             throw new Exception("Ngày đã nhập không hợp lệ !");
         }
 

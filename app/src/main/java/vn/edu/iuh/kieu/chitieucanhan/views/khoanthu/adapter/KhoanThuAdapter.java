@@ -1,6 +1,8 @@
 package vn.edu.iuh.kieu.chitieucanhan.views.khoanthu.adapter;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,33 +14,49 @@ import java.util.List;
 import vn.edu.iuh.kieu.chitieucanhan.R;
 import vn.edu.iuh.kieu.chitieucanhan.entities.KhoanThu;
 
-public class KhoanThuAdapter extends ArrayAdapter<KhoanThu> {
+public class KhoanThuAdapter extends RecyclerView.Adapter<KhoanThuAdapter.KhoanThuViewHolder> {
 
     private Context context;
-    private int resource;
     private List<KhoanThu> khoanThuList;
 
-    public KhoanThuAdapter(Context context, int resource, List<KhoanThu> khoanThuList) {
-        super(context, resource, khoanThuList);
+    public KhoanThuAdapter(Context context, List<KhoanThu> khoanThuList) {
         this.context = context;
-        this.resource = resource;
         this.khoanThuList = khoanThuList;
     }
 
+    @NonNull
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
-        View view = LayoutInflater.from(context).inflate(this.resource, parent, false);
+    public KhoanThuViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+        View view = LayoutInflater.from(context).inflate(R.layout.item_khoan_thu, null);
+        return new KhoanThuViewHolder(view);
+    }
 
-        KhoanThu khoanThu = this.khoanThuList.get(position);
+    @Override
+    public void onBindViewHolder(@NonNull KhoanThuViewHolder holder, int i) {
+        KhoanThu khoanThu = this.khoanThuList.get(i);
 
-        TextView tvContent = view.findViewById(R.id.item_khoanthu_tv_content);
-        TextView tvDate = view.findViewById(R.id.item_khoanthu_tv_date);
-        TextView tvSotien = view.findViewById(R.id.item_khoanthu_tv_sotien);
+        holder.tvContent.setText(khoanThu.getTitle());
+        holder.tvDate.setText(khoanThu.getTime());
+        holder.tvSotien.setText("+" + khoanThu.getSotien());
+    }
 
-        tvContent.setText(khoanThu.getTitle());
-        tvDate.setText(khoanThu.getTime());
-        tvSotien.setText("+" + String.valueOf(khoanThu.getSotien()));
+    @Override
+    public int getItemCount() {
+        return khoanThuList.size();
+    }
 
-        return view;
+
+    class KhoanThuViewHolder extends RecyclerView.ViewHolder {
+
+        TextView tvContent;
+        TextView tvDate;
+        TextView tvSotien;
+
+        public KhoanThuViewHolder(@NonNull View view) {
+            super(view);
+            tvContent = view.findViewById(R.id.item_khoanthu_tv_content);
+            tvDate = view.findViewById(R.id.item_khoanthu_tv_date);
+            tvSotien = view.findViewById(R.id.item_khoanthu_tv_sotien);
+        }
     }
 }

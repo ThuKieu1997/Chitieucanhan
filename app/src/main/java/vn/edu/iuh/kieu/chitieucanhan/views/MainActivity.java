@@ -58,18 +58,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             builder.setTitle("Thoát ứng dụng ?");
             builder.setMessage("Bạn muốn thoát ứng dụng ?");
             builder.setCancelable(false);
-            builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    dialog.dismiss();
-                }
-            });
-            builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    dialog.dismiss();
-                    finish();
-                }
+            builder.setNegativeButton("No", (dialog, which) -> dialog.dismiss());
+            builder.setPositiveButton("Yes", (dialog, which) -> {
+                dialog.dismiss();
+                finish();
             });
 
             builder.create().show();
