@@ -1,5 +1,6 @@
 package vn.edu.iuh.kieu.chitieucanhan;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -28,6 +29,11 @@ public class MoneySqliteOpenHelper extends SQLiteOpenHelper {
 
         // KHOAN CHI
         db.execSQL("CREATE TABLE " + TABLE_KHOANCHI + " (id INTEGER PRIMARY KEY AUTOINCREMENT, title VARCHAR(255), sotien DOUBLE, time datetime);");
+
+        // insert MONEY
+        ContentValues values = new ContentValues();
+        values.put("tongtien", 0);
+        db.insert(TABLE_MONEY, null, values);
     }
 
     @Override

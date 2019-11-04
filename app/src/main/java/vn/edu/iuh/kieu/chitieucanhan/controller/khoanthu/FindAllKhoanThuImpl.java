@@ -7,18 +7,25 @@ import java.util.List;
 
 import vn.edu.iuh.kieu.chitieucanhan.controller.BaseController;
 import vn.edu.iuh.kieu.chitieucanhan.dao.KhoanThuDAO;
+import vn.edu.iuh.kieu.chitieucanhan.dao.MoneyDao;
 import vn.edu.iuh.kieu.chitieucanhan.entities.KhoanThu;
+import vn.edu.iuh.kieu.chitieucanhan.entities.Money;
 
 public class FindAllKhoanThuImpl extends BaseController implements FindAllKhoanThu {
 
     private KhoanThuDAO khoanThuDAO;
 
+    private MoneyDao moneyDao;
+
     private List<KhoanThu> khoanThuList = new ArrayList<>();
 
-    private String tongKhoanThu = "0";
+    private double tongKhoanThu = 0;
+
+    private double tongTien = 0;
 
     public FindAllKhoanThuImpl(Context context) {
         this.khoanThuDAO = new KhoanThuDAO(context);
+        this.moneyDao = new MoneyDao(context);
     }
 
     @Override
@@ -28,14 +35,21 @@ public class FindAllKhoanThuImpl extends BaseController implements FindAllKhoanT
     @Override
     public void execute() throws Exception {
         validate();
+
+        // get all khoan thu
         this.khoanThuList = khoanThuDAO.getAll();
 
-        double tongthu = 0;
+        // tinh tong khoan thu
         for (KhoanThu khoanThu : this.khoanThuList) {
-            tongthu = khoanThu.getSotien();
+            this.tongKhoanThu += khoanThu.getSotien();
         }
 
-        this.tongKhoanThu = String.valueOf(tongthu);
+        // get tong tien tra ve
+        List<Money> moneyList = this.moneyDao.getAll();
+        if (moneyList.size() > 0) {
+            Money money = this.moneyDao.getAll().get(0);
+            this.tongTien = money.getTongtien();
+        }
     }
 
     @Override
@@ -44,7 +58,12 @@ public class FindAllKhoanThuImpl extends BaseController implements FindAllKhoanT
     }
 
     @Override
-    public String getTongKhoanThu() {
+    public double getTongTien() {
+        return this.tongTien;
+    }
+
+    @Override
+    public double getTongKhoanThu() {
         return this.tongKhoanThu;
     }
 

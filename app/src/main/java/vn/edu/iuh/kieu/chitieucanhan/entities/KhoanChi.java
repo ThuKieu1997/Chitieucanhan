@@ -15,6 +15,13 @@ public class KhoanChi implements Serializable {
 
     private String time;
 
+    public KhoanChi(long id, String title, double sotien, String time) {
+        this.id = id;
+        this.title = title;
+        this.sotien = sotien;
+        this.time = time;
+    }
+
     public KhoanChi(String title, double sotien, String time) {
         this.id = 0;
         this.title = title;

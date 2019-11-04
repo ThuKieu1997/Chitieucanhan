@@ -54,17 +54,26 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         } else if (v.equals(btnThongKe)) {
 
         } else if (v.equals(btnThoat)) {
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setTitle("Thoát ứng dụng ?");
-            builder.setMessage("Bạn muốn thoát ứng dụng ?");
-            builder.setCancelable(false);
-            builder.setNegativeButton("No", (dialog, which) -> dialog.dismiss());
-            builder.setPositiveButton("Yes", (dialog, which) -> {
-                dialog.dismiss();
-                finish();
-            });
-
-            builder.create().show();
+            confirmExit();
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        confirmExit();
+    }
+
+    private void confirmExit() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Thoát ứng dụng ?");
+        builder.setMessage("Bạn muốn thoát ứng dụng ?");
+        builder.setCancelable(false);
+        builder.setNegativeButton("No", (dialog, which) -> dialog.dismiss());
+        builder.setPositiveButton("Yes", (dialog, which) -> {
+            dialog.dismiss();
+            finish();
+        });
+
+        builder.create().show();
     }
 }

@@ -28,7 +28,7 @@
 
                 <TextView
                     android:id="@+id/khoanthu_tv_title_khoanthu"
-                    android:text="Khoản thu hiện có"
+                    android:text="Tổng khoản thu"
                     android:textSize="30dp"
                     android:textColor="@android:color/white"
                     android:textStyle="bold"

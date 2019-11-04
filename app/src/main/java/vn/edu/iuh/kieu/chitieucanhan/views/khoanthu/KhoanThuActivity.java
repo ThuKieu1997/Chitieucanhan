@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import vn.edu.iuh.kieu.chitieucanhan.R;
+import vn.edu.iuh.kieu.chitieucanhan.controller.BaseController;
 import vn.edu.iuh.kieu.chitieucanhan.controller.khoanthu.FindAllKhoanThu;
 import vn.edu.iuh.kieu.chitieucanhan.controller.khoanthu.FindAllKhoanThuImpl;
 import vn.edu.iuh.kieu.chitieucanhan.entities.KhoanThu;
@@ -61,6 +62,9 @@ public class KhoanThuActivity extends AppCompatActivity implements View.OnClickL
             Log.i("HTC", "getKhoanThuList: " + this.khoanThuList);
 
             this.adapter.notifyDataSetChanged();
+
+            // set tong tien
+            this.tvKhoanthu.setText(BaseController.formatNumber("#,###", this.findAllKhoanThu.getTongKhoanThu()));
 
         } catch (Exception e) {
             e.printStackTrace();

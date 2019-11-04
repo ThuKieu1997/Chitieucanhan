@@ -9,5 +9,7 @@ public interface FindAllKhoanThu extends Validator {
 
     List<KhoanThu> getKhoanThuList();
 
-    String getTongKhoanThu();
+    double getTongTien();
+
+    double getTongKhoanThu();
 }

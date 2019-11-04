@@ -22,14 +22,14 @@ public abstract class BaseDAO<T> {
      * Function get all Object a Table from Sqlite.
      * @return
      */
-    abstract List<T> getAll();
+    public abstract List<T> getAll();
 
     /**
      * Function get a Object from Sqlite with ID primary key.
      * @param id primary key.
      * @return Object.
      */
-    abstract T getOne(int id);
+    public abstract T getOne(int id);
 
     /**
      * Function insert a Object into Sqlite.

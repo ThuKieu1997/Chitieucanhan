@@ -1,5 +1,7 @@
 package vn.edu.iuh.kieu.chitieucanhan.controller;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -23,6 +25,11 @@ public abstract class BaseController {
         } catch(NumberFormatException e){
             return false;
         }
+    }
+
+    public static String formatNumber (String pattern, double value) {
+        NumberFormat formatter = new DecimalFormat(pattern);
+        return formatter.format(value);
     }
 
     @Override

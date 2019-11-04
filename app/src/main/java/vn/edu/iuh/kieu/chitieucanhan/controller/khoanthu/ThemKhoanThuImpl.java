@@ -2,10 +2,18 @@ package vn.edu.iuh.kieu.chitieucanhan.controller.khoanthu;
 
 import android.content.Context;
 
+import java.util.List;
+
 import vn.edu.iuh.kieu.chitieucanhan.BaseContext;
 import vn.edu.iuh.kieu.chitieucanhan.controller.BaseController;
+import vn.edu.iuh.kieu.chitieucanhan.dao.KhoanChiDao;
 import vn.edu.iuh.kieu.chitieucanhan.dao.KhoanThuDAO;
+import vn.edu.iuh.kieu.chitieucanhan.dao.MoneyDao;
+import vn.edu.iuh.kieu.chitieucanhan.entities.KhoanChi;
 import vn.edu.iuh.kieu.chitieucanhan.entities.KhoanThu;
+import vn.edu.iuh.kieu.chitieucanhan.entities.Money;
+
+import static vn.edu.iuh.kieu.chitieucanhan.BaseContext.TABLE_MONEY;
 
 public class ThemKhoanThuImpl extends BaseController implements ThemKhoanThu {
 
@@ -19,8 +27,14 @@ public class ThemKhoanThuImpl extends BaseController implements ThemKhoanThu {
 
     private KhoanThuDAO khoanThuDAO;
 
+    private KhoanChiDao khoanChiDao;
+
+    private MoneyDao moneyDao;
+
     public ThemKhoanThuImpl(Context context) {
         this.khoanThuDAO = new KhoanThuDAO(context);
+        this.khoanChiDao = new KhoanChiDao(context);
+        this.moneyDao = new MoneyDao(context);
     }
 
     @Override
@@ -56,11 +70,26 @@ public class ThemKhoanThuImpl extends BaseController implements ThemKhoanThu {
 
     @Override
     public void execute() throws Exception {
+        // validate
         validate();
 
+        // insert khoan thu
         KhoanThu khoanThu = new KhoanThu(this.content, Double.parseDouble(this.sotien), ngay);
-
         this.result = khoanThuDAO.insert(khoanThu, BaseContext.TABLE_KHOANTHU);
+
+        // get all khoan thu
+        List<KhoanThu> khoanThuList = khoanThuDAO.getAll();
+
+        // get all khoan chi
+        List<KhoanChi> khoanChiList = khoanChiDao.getAll();
+
+        // update tong tien
+        List<Money> moneyList = moneyDao.getAll();
+        if (moneyList.size() > 0) {
+            Money money = moneyDao.getAll().get(0);
+            money.updateTongTien(khoanThuList, khoanChiList);
+            moneyDao.update(money, TABLE_MONEY, "id=?", new String[] {String.valueOf(money.getId())});
+        }
     }
 
     @Override

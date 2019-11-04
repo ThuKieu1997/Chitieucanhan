@@ -59,6 +59,27 @@ public class Money implements Serializable {
     ///////////////////////////////////////////////////
     // KhoanChi
 
+    public void updateTongTien(List<KhoanThu> khoanThuList, List<KhoanChi> khoanChiList) {
+        // check null
+        if (khoanThuList == null) {
+            khoanThuList = new ArrayList<>();
+        }
+
+        if (khoanChiList == null) {
+            khoanChiList = new ArrayList<>();
+        }
+
+        // cap nhat khoan thu
+        for (KhoanThu khoanThu : khoanThuList) {
+            this.tongtien += khoanThu.getSotien();
+        }
+
+        // cap nhat khoan chi
+        for (KhoanChi khoanChi : khoanChiList) {
+            this.tongtien -= khoanChi.getSotien();
+        }
+    }
+
     public void addKhoanThu(KhoanThu khoanThu) {
 
         // check null
