@@ -79,11 +79,12 @@ public class ThongKeActivity extends AppCompatActivity {
 
         double tongThu = this.thongKe.getTongThu();
         double tongChi = this.thongKe.getTongChi();
-        Double tongTien = this.thongKe.getTongTien();
+        double tongTien = this.thongKe.getTongTien();
+        double conLai = tongTien - tongChi;
 
         tvTongThu.setText(BaseController.formatNumber("#,###", tongThu) + " VND");
         tvTongChi.setText(BaseController.formatNumber("#,###", tongChi) + " VND");
-        tvTongConLai.setText(BaseController.formatNumber("#,###", tongTien) + " VND");
+        tvTongConLai.setText(BaseController.formatNumber("#,###", conLai) + " VND");
 
         Double tongThuPercent =  tongThu / (tongTien / 100);
         Double tongChiPercent = tongChi / (tongTien / 100);
@@ -96,7 +97,7 @@ public class ThongKeActivity extends AppCompatActivity {
         entries.add(new PieEntry(tongChiPercent.floatValue(), "Chi"));
         colorList.add(ColorTemplate.COLORFUL_COLORS[1]);
 
-        buildPieChart(tongTien);
+        buildPieChart(conLai);
     }
 
     private void buildPieChart(double tongTien) {

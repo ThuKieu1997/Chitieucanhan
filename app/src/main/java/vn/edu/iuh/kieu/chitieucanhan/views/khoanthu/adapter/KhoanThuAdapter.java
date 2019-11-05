@@ -12,6 +12,7 @@ import android.widget.TextView;
 import java.util.List;
 
 import vn.edu.iuh.kieu.chitieucanhan.R;
+import vn.edu.iuh.kieu.chitieucanhan.controller.BaseController;
 import vn.edu.iuh.kieu.chitieucanhan.entities.KhoanThu;
 
 public class KhoanThuAdapter extends RecyclerView.Adapter<KhoanThuAdapter.KhoanThuViewHolder> {
@@ -37,7 +38,7 @@ public class KhoanThuAdapter extends RecyclerView.Adapter<KhoanThuAdapter.KhoanT
 
         holder.tvContent.setText(khoanThu.getTitle());
         holder.tvDate.setText(khoanThu.getTime());
-        holder.tvSotien.setText("+" + khoanThu.getSotien());
+        holder.tvSotien.setText("+" + BaseController.formatNumber("#,###", khoanThu.getSotien()));
     }
 
     @Override

@@ -11,6 +11,7 @@ import android.widget.TextView;
 import java.util.List;
 
 import vn.edu.iuh.kieu.chitieucanhan.R;
+import vn.edu.iuh.kieu.chitieucanhan.controller.BaseController;
 import vn.edu.iuh.kieu.chitieucanhan.entities.KhoanChi;
 
 public class KhoanChiAdapter extends RecyclerView.Adapter<KhoanChiAdapter.KhoanChiViewHolder> {
@@ -36,7 +37,7 @@ public class KhoanChiAdapter extends RecyclerView.Adapter<KhoanChiAdapter.KhoanC
 
         holder.tvContent.setText(khoanChi.getTitle());
         holder.tvDate.setText(khoanChi.getTime());
-        holder.tvSotien.setText("-" + khoanChi.getSotien());
+        holder.tvSotien.setText("-" + BaseController.formatNumber("#,###", khoanChi.getSotien()));
     }
 
     @Override
