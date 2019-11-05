@@ -59,6 +59,9 @@ public class Money implements Serializable {
     ///////////////////////////////////////////////////
 
     public void updateTongTien(List<KhoanThu> khoanThuList, List<KhoanChi> khoanChiList) {
+
+        this.tongtien = 0;
+
         // check null
         if (khoanThuList == null) {
             khoanThuList = new ArrayList<>();
